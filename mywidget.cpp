@@ -57,6 +57,10 @@ QString myWidget::getIcono()
 
 void myWidget::btnClicked()
 {
+
+    printf("El texto anterior era: %s \n",qPrintable(this->getTexto()));
+    printf("La imagen anterior era: %s \n",qPrintable(this->getIcono()));
+    //printf(this->getTexto().toStdString().c_str());
     this->img = ":/Img/flechaabajo.png";
     this->texto = "Abajo";
     this->setIcono(img);
