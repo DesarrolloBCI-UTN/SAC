@@ -1,119 +1,64 @@
 #include "mywidget.h"
 #include <QPushButton>
 #include <QLayout>
-
-static const char * rewind_xpm[] = {
-"16 16 3 1",
-" 	c None",
-".	c #FFFFFF",
-"+	c #000000",
-"................",
-".++..........++.",
-".++........++++.",
-".++......++++++.",
-".++....++++++++.",
-".++..++++++++++.",
-".++++++++++++++.",
-".++++++++++++++.",
-".++++++++++++++.",
-".++++++++++++++.",
-".++..++++++++++.",
-".++....++++++++.",
-".++......++++++.",
-".++........++++.",
-".++.........+++.",
-"................"};
-
-static const char * play_xpm[] = {
-"16 16 3 1",
-" 	c None",
-".	c #FFFFFF",
-"+	c #000000",
-"................",
-".++.............",
-".++++...........",
-".++++++.........",
-".++++++++.......",
-".++++++++++.....",
-".++++++++++++...",
-".+++++++++++++..",
-".+++++++++++++..",
-".++++++++++++...",
-".++++++++++.....",
-".++++++++.......",
-".++++++.........",
-".++++...........",
-".+++............",
-"................"};
-
-static const char * next_xpm[] = {
-"16 16 3 1",
-" 	c None",
-".	c #FFFFFF",
-"+	c #000000",
-"................",
-".++.....+.......",
-".+++....++......",
-".++++...+++.....",
-".+++++..++++....",
-".++++++.+++++...",
-".+++++++++++++..",
-".++++++++++++++.",
-".++++++++++++++.",
-".+++++++++++++..",
-".++++++.+++++...",
-".+++++..++++....",
-".++++...+++.....",
-".+++....++......",
-".++.....+.......",
-"................"};
-
-static const char * stop_xpm[] = {
-"16 16 3 1",
-" 	c None",
-".	c #FFFFFF",
-"+	c #000000",
-"................",
-".++++++++++++++.",
-".++++++++++++++.",
-".++++++++++++++.",
-".+++........+++.",
-".+++........+++.",
-".+++........+++.",
-".+++........+++.",
-".+++........+++.",
-".+++........+++.",
-".+++........+++.",
-".+++........+++.",
-".++++++++++++++.",
-".++++++++++++++.",
-".++++++++++++++.",
-"................"};
+#include <QToolButton>
 
 
 myWidget::myWidget(QWidget *parent) : QWidget(parent)
 {
-   QHBoxLayout *layout = new QHBoxLayout(this);
-   layout->setMargin(0);
+   /*QHBoxLayout *layout = new QHBoxLayout(this);
+   layout->setMargin(0);*/
 
-   QPushButton *rewind = new QPushButton( QPixmap( rewind_xpm ), "vcr_rewind", this);
-   layout->addWidget( rewind );
-   connect( rewind, SIGNAL(clicked()), SIGNAL(rewind()) );
+    /*Creo un default*/
+    this->boton = new QToolButton(this);
+    this->boton->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
 
-   QPushButton *play = new QPushButton( QPixmap( play_xpm ), "vcr_play", this);
-   layout->addWidget( play );
-   connect( play, SIGNAL(clicked()), SIGNAL(play()) );
+    //this->boton->setFlat(true);
+    //this->boton->setMinimumSize(100,100);
 
-   QPushButton *next = new QPushButton( QPixmap( next_xpm ), "vcr_next", this);
-   layout->addWidget( next );
-   connect( next, SIGNAL(clicked()), SIGNAL(next()) );
+    //layout->addWidget( boton );
+    this->img = ":/Img/flecha.png";
+    this->texto = "Arriba";
 
-   QPushButton *stop = new QPushButton( QPixmap( stop_xpm ), "vcr_stop", this);
-   layout->addWidget( stop );
-   connect( stop, SIGNAL(clicked()), SIGNAL(stop()) );
+    //setteo imagen
+   this->setIcono(this->img);
+
+    //setteo texto
+    this->setTexto(this->texto);
+
+    //conecto la signal con el slot.
+    connect(boton, SIGNAL(clicked()), this, SLOT(btnClicked()));
+
 }
 
 myWidget::~myWidget(void)
 {
 
+}
+void myWidget::setIcono(QString img)
+{
+    this->boton->setIcon(QIcon(img));
+    this->boton->setIconSize(QIcon(img).availableSizes().first());
+}
+void myWidget::setTexto(QString texto)
+{
+    this->boton->setText(texto);
+}
+
+QString myWidget::getTexto()
+{
+    return this->texto;
+}
+
+QString myWidget::getIcono()
+{
+    return this->img;
+}
+
+void myWidget::btnClicked()
+{
+    this->img = ":/Img/flechaabajo.png";
+    this->texto = "Abajo";
+    this->setIcono(img);
+    this->setTexto(texto);
 }

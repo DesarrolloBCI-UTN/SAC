@@ -17,24 +17,21 @@
    <widget class="myWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>40</y>
-      <width>601</width>
-      <height>121</height>
+      <x>160</x>
+      <y>190</y>
+      <width>141</width>
+      <height>161</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="myWidget" name="widget_2" native="true">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>250</y>
-      <width>161</width>
-      <height>131</height>
+      <x>350</x>
+      <y>190</y>
+      <width>141</width>
+      <height>161</height>
      </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
     </property>
    </widget>
   </widget>
