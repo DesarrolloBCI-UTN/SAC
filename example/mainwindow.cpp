@@ -23,3 +23,4 @@ void MainWindow::on_pushButton_clicked()
    ui->pushButton->setText(a);
 }
 */
+
