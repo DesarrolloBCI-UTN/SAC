@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QToolButton>
+#include <QGridLayout>
 
 class myWidget : public QWidget
 {
@@ -11,18 +12,20 @@ class myWidget : public QWidget
 public:
     explicit myWidget(QWidget *parent = nullptr);
     ~myWidget();
-    QString img, texto;
 
     QToolButton *boton;
+    QGridLayout *layout;
+
+    //setters
     void setIcono(QString img);
-    QString getIcono();
     void setTexto(QString texto);
+    //getters
+    QString getIcono();
     QString getTexto();
-signals:
-    void rewind();
-    void play();
-    void next();
-    void stop();
+
+private:
+    QString img, texto;
+
 
 private slots:
     void btnClicked();
